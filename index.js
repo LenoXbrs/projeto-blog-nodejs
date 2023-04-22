@@ -6,7 +6,11 @@ const connection = require('./database/database')
 
 //import nos controllers
 const categoriesController = require('./categories/CategoriesController');
-const articlesCOntroller = require('./articles/articlesControler')
+const articlesCOntroller = require('./articles/articlesControler');
+
+//import models
+const Article = require('./articles/Article');
+const Category = require('./categories/Category');
 //View engine
 app.set('view engine','ejs');
 
