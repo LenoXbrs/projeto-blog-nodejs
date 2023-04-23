@@ -25,7 +25,7 @@ Article.belongsTo(Category);
 //Uma categoria tem muitos artigos 1-n
 Category.hasMany(Article);
 
-
-Article.sync({force: true});
+//comentado pois ja foi criado, esse comando cria no banco
+// Article.sync({force: true});
 module.exports = Article;
 

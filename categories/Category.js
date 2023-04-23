@@ -14,8 +14,8 @@ const Category = connection.define('categories',{
     }
 });
 
-
-Category.sync({force: true});
+//comentado pois ja foi criado, esse comando cria no banco
+// Category.sync({force: true});
 
 module.exports = Category;
 
