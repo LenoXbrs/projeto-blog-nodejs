@@ -2,7 +2,8 @@ const { render } = require('ejs');
 const express = require('express');
 const router = express.Router();
 const Category = require('./Category')
-const slugify = require('slugify')
+const slugify = require('slugify');
+const { where } = require('sequelize');
 
 
 router.get('/categories',(req,res)=>{
@@ -49,6 +50,31 @@ router.post('/categories/save',(req,res)=>{
     })
   
 
+})
+
+
+router.post('/categories/delete',(req,res)=>{
+
+    var id = req.body.id;
+
+    if(id != undefined){
+
+        if(!isNaN(id)){ //for um numero
+            Category.destroy({where:{
+                id:id
+            }}).then( 
+                res.redirect('/admin/categories'),
+                res.redirect('/admin/categories')
+            )
+        }else{
+            res.redirect('/admin/categories')
+        }
+    }else {
+        res.redirect('/admin/categories')
+    }
+
+    
+   
 })
 
 module.exports = router;

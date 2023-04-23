@@ -26,13 +26,18 @@
                     <th ><%= categories.id %> </th>  
                     <th><%= categories.title %></th>  
                     <th><%= categories.slug %> </th>  
-                    <th>
+                    <th class="d-flex  justify-content-center">
+                       
                         <button class="btn btn-warning">
                             Editar
                         </button>
-                        <button class="btn btn-danger">
-                            Deletar
-                        </button>
+                        <form class="ms-1" action="/categories/delete" method="post">
+                            <input type="hidden" name="id" value="<%= categories.id%>">
+                            <button " class="btn btn-danger">
+                                Deletar
+                            </button>
+                        </form>
+                       
                     </th>
                 </tr>
 
