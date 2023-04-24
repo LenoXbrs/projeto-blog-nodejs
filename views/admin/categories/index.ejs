@@ -27,10 +27,8 @@
                     <th><%= categories.title %></th>  
                     <th><%= categories.slug %> </th>  
                     <th class="d-flex  justify-content-center">
-                       
-                        <button class="btn btn-warning">
-                            Editar
-                        </button>
+                        
+                        <a href="/categories/select/<%= categories.id %>" class="btn btn-warning">Editar</a>
                         <form class="ms-1" action="/categories/delete" method="post" onsubmit="confirmarDelecao(event,this)">
                             <input type="hidden" name="id" value="<%= categories.id%>">
                             <button " class="btn btn-danger">
@@ -49,6 +47,7 @@
         
 
         <script>
+            //verifica se o usuario quer deletar
             function confirmarDelecao(event, form){
                 event.preventDefault();
                var decision = confirm('Você quer deletar essa categoria ?')
