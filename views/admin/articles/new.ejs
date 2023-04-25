@@ -7,12 +7,30 @@
                  <h2 class="mt-3">Novo artigo</h2>
             </div>
             <div class="card-body">
-                <form action="/categories/save" method="post">
+                <form action="/articles/save" method="post">
                 <hr>
                     <input class="form-control mb-3" type="text" name="title" placeholder="Defina o titulo do artigo">
                     <!--id para o tiny-->
                     <textarea id="article" name="body" class="form-control mt-3" placeholder="Escreva o artigo aqui"></textarea>
+                    
+                    <label class="mt-2" for="">Categorias</label>
+                    <select class="form-control mt-2" name="category" id="">
+
+                        
+                        <% categories.forEach(function(category){ %>
+
+                                <option value="<%= category.id %>"><%= category.title %></option>
+                           
+                          <%})%>
+                      
+                        </select>
+
                     <button class="btn btn-success mt-2">Cadastrar</button>
+                   
+
+                 
+
+                 
                 </form>
             </div>
         </div>

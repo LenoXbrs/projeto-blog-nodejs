@@ -35,7 +35,7 @@ connection.authenticate().then(()=>{
 app.use('/',categoriesController);
 
 //usar rotas do controller de articles em index, com prefixo
-app.use('/art',articlesCOntroller);
+app.use('/',articlesCOntroller);
 
 
 app.get('/',(req,res)=>{
