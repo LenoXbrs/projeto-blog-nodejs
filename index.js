@@ -40,14 +40,14 @@ app.use('/',articlesCOntroller);
 
 app.get('/',(req,res)=>{
 
-    Article.findAll().then(articles=>{
+    Article.findAll({order: [['id','DESC']]}).then(articles=>{
          res.render('index',{
             articles:articles
          })
     })
 })
 
-app.get('/:slug',(req,res)=>{
+app.get('/find/:slug',(req,res)=>{
     var slug = req.params.slug;
     Article.findOne({
         where:{
@@ -56,7 +56,7 @@ app.get('/:slug',(req,res)=>{
 
     }).then(article=>{
         if(article != undefined){
-            res.render('/',{
+            res.render('article',{
                 article:article
             })
         }else{
