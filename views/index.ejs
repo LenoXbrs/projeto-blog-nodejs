@@ -5,7 +5,47 @@
 <%- include ('partials/header.ejs') %>
 
 <body>
-    <h1>Olá Mundo!</h1>
+    <%- include ('partials/homenavbar.ejs') %>
+    
+
+
+    <div class="container-fluid py-5  text-center">
+        
+        <h1 class="display-5 fw-bold">Artigos</h1>
+        <p class="col-ml-6 fs-1 text-center ">Crie você tambem o seu proprio artigo!!! adicione imagens, conte suas experiencias e compartilhe suas ideias com a comunidade! Clique aqui em baixo</p>
+        <a  class="btn btn-primary btn-lg" type="button">Criar artigo</a>
+      </div>
+      
+    <div class="container mt-5 bg-container bg-primary">
+        
+        
+        <div class="row">
+            <% articles.forEach(article =>{ %>
+            <div class="col-4">
+                <div class="card mb-3">
+
+                    <div class="card-header">
+                        <h4><%= article.title %></h4>
+                    </div>
+    
+                    <div class="card-body ">
+                       <a class="btn btn-outline-primary">Ler artigo</a>
+                    </div>
+    
+                </div>
+            </div>
+            <% }) %>
+            
+
+
+        </div>
+      
+
+       
+
+           
+       
+    </div>
 </body>
 
 <%- include ('partials/header.ejs') %>
