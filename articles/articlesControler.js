@@ -36,7 +36,7 @@ router.post('/articles/save',(req,res)=>{
   
 });
 
-
+//lista de artigos
 router.get('/admin/articles',(req,res)=>{
     //fazendo join com category 
     Article.findAll({
@@ -47,7 +47,28 @@ router.get('/admin/articles',(req,res)=>{
             articles:articles
         })
     })
+    //delete
+    router.post('/admin/article/delete',(req,res)=>{
+        var articleId = req.body.articleId;
+        if(articleId != undefined){
+            if(!isNaN(articleId)){
+                Article.destroy({
+                    where:{ id: articleId}
+                }).then(()=>{
+                    res.redirect('/admin/articles')
+                })
+            }else{
+                res.redirect('/admin/articles')
+            }
+           
+        }else{
+            res.redirect('/admin/articles')
+        }
+       
 
+
+
+    })
        
 })
 
