@@ -41,9 +41,17 @@ app.use('/',articlesCOntroller);
 app.get('/',(req,res)=>{
 
     Article.findAll({order: [['id','DESC']]}).then(articles=>{
-         res.render('index',{
-            articles:articles
-         })
+
+        Category.findAll().then(categories=>{
+
+            res.render('index',{
+                articles:articles,
+                categories:categories
+             })
+        })
+
+
+
     })
 })
 
@@ -52,12 +60,16 @@ app.get('/find/:slug',(req,res)=>{
     Article.findOne({
         where:{
             slug:slug
-        }
-
+        } 
+        
     }).then(article=>{
         if(article != undefined){
-            res.render('article',{
-                article:article
+            Category.findAll().then(categories=>{
+
+                res.render('article',{
+                    article:article,
+                    categories:categories
+                 })
             })
         }else{
             res.redirect('/')
@@ -71,10 +83,61 @@ app.get('/find/:slug',(req,res)=>{
 
 
 
+    app.get('/find/category/:slug',(req,res)=>{
+        var slug = req.params.slug;
+
+        Category.findOne({
+            where: {
+                slug:slug
+            },
+            include:[{model: Article}]
+        }).then(category=>{
+            
+            if(category != undefined){
+            
+                Category.findAll().then(categories =>{
+                   
+                    res.render('category',{
+                        articles: category.articles,
+                        categories: categories
+                    })
+                })
 
 
 
+            }else{
+                res.redirect('/')
+            }
+          
+        })
+    })
 
+
+    //metodo para acessar uma categoria, sem utilidade apenas foi usado para praticar!
+  //  app.get('/find/category/:slug',(req,res)=>{
+  //      var slug = req.params.slug;
+  //    
+  //          Category.findOne({
+  //              where:{
+  //                  slug:slug
+  //              }
+  //          }).then(category=>{
+  //              if(slug != undefined){
+  //              Category.findAll().then(categories=>{
+  //                  res.render('category',{
+  //                      category:category,
+  //                      categories: categories
+  //              })
+  //              })
+  //              }else{
+  //                  res.redirect('/')
+  //              }
+  //          }).catch(err=>{
+  //              res.redirect('/')
+  //          })
+  //  
+  //    
+  //  })
 
 
 
