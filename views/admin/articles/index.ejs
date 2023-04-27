@@ -23,15 +23,15 @@
 
             <tbody>
                <% articles.forEach(article =>{  %>
-                <tr>
+                <tr >
 
                
                 <td><%= article.id %></td>
                 <td><%= article.title %></td>
                 <td><%= article.slug %></td>
                 <td><%= article.category.title %></td>
-                <td>
-                    <a href="/article/select/<%= article.id %>" class="btn btn-warning">Editar</a>
+                <td class="d-flex  justify-content-center">
+                    <a href="/article/select/<%= article.id %>" class="btn btn-warning me-2">Editar</a>
                     <form method="post" action="/admin/article/delete" onsubmit="confirmarDelecao(event,this)">
                     <input type="hidden" name="articleId" id="" value="<%= article.id %>" >
                     <button class="btn btn-danger">Deletar</button>
