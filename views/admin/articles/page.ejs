@@ -1,0 +1,43 @@
+
+
+
+
+<%- include ('../../partials/header.ejs') %>
+
+<body>
+    <%- include ('../../partials/homenavbar.ejs') %>
+    
+
+    <div class="container mt-5 bg-container bg-primary">
+        
+        
+        <div class="row">
+            <% result.articles.rows.forEach(article =>{ %>
+            <div class="col-4">
+                <div class="card mb-3">
+
+                    <div class="card-header">
+                        <h4><%= article.title %></h4>
+                    </div>
+    
+                    <div class="card-body ">
+                       <a href="/find/<%= article.slug %>" class="btn btn-outline-primary">Ler artigo</a>
+                    </div>
+    
+                </div>
+            </div>
+            <% }) %>
+            
+
+
+        </div>
+      
+
+       
+
+           
+       
+    </div>
+</body>
+
+<%- include ('../../partials/header.ejs') %>

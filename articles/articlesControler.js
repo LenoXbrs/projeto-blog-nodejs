@@ -130,7 +130,45 @@ router.get('/admin/articles',(req,res)=>{
         
     })
        
+    //paginação
+    router.get('/articles/page/:num',(req,res)=>{
+        var page = req.params.num;
 
+        var offset = 0;
 
+        if(isNaN(page) ||page ==1){
+            offset = 0
+        }else{
+         
+            offset = (parseInt(page)-1) * 4 // 4 pq quero exibir apenas 4 offset diz a onde começa e o limit diz quantos
+            // se eu tiver 10 obj, e dizer offset 4 limit 3, vou começar no 4 e terminar no 7
+        }
+      
+        Article.findAndCountAll({
+            limit: 4,
+            offset: offset
+        }).then(articles=>{
+
+            var next;
+            if(offset + 4 >= articles.count){
+                next = false;
+            } else {
+                next = true;
+            }
+            var result =  {
+                next : next,
+                articles : articles
+            }
+
+            Category.findAll().then(categories=>{
+                res.render('admin/articles/page',{
+                    result : result,
+                    categories : categories
+                })
+           //      res.json(result)
+            })
+           
+        })
+    })
 
 module.exports = router;
